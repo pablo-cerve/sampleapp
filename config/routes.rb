@@ -3,6 +3,10 @@ Sampleapp::Application.routes.draw do
 
   get "static_pages/help"
 
+  # Agregado a mano
+  get "static_pages/about"
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
