@@ -6,6 +6,8 @@ Sampleapp::Application.routes.draw do
   # Agregado a mano
   get "static_pages/about"
 
+  get "static_pages/contact"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
