@@ -4,36 +4,27 @@ describe "Static pages" do
 
 	let(:base_title) {"Ruby on Rails Tutorial Sample App"}
 
+	subject { page }
 	describe "Home page" do
 
-		it "should have the h1 'Sample App'" do
-			visit '/static_pages/home'
-			page.should have_selector('h1', :text => 'Sample App')
-		end
+		before { visit root_path}
 
-		it "should have the base title" do
- 			visit '/static_pages/home'
- 			page.should have_selector('title',
+		it { should have_selector('h1', text: 'SAMPLE//APP')}
+
+		it { should have_selector('title',
  														#:text => "Ruby on Rails Tutorial Sample App | Home")
-														:text => "#{base_title}")
-		end
+														:text => full_title(''))}
+	
+		it { should_not have_selector('title', text: 'Home')}
 
-		it "should not have custom HOME" do
-			visit '/static_pages/home'
-			page.should_not have_selector('title', :text => 'Home')
-		end
-
-		it "should not have cualquier cosa" do
-			visit '/static_pages/home'
-			page.should_not have_selector('html', :text => '<title>')
-		end
+		it { should_not have_selector('html', text: '<title>')}
 
 	end
 
 	describe "Help page" do
 
 		it "should have the content 'Help'" do
-			visit '/static_pages/help'
+			visit help_path
 			page.should have_content('HeLPP')
 		end
 	end
@@ -41,7 +32,7 @@ describe "Static pages" do
 	describe "About page" do
 
 		it "should have the content 'About us'" do
-			visit '/static_pages/about'
+			visit about_path
 			page.should have_content('About Us')
 		end
 	end
@@ -49,10 +40,21 @@ describe "Static pages" do
 	describe "Contact page" do
 
 		it "should have the content 'About us'" do
-			visit '/static_pages/contact'
+			visit contact_path
 			page.should have_content('Contact')
 			page.should have_content('Conta')
 		end
+
+		it "should have the h1 'Contact'" do
+			visit contact_path
+			page.should have_selector('h1', text: 'Contact')
+		end
+
+		it "should have the title 'Contact'" do
+			visit contact_path
+			page.should have_selector('title', text: 'Ruby on Rails Tutorial Sample App | Contact')
+		end
+
 	end
 
 end
