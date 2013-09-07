@@ -4,6 +4,16 @@ describe "Static pages" do
 
 	let(:base_title) {"Ruby on Rails Tutorial Sample App"}
 
+	it "should have the rght links on the layout" do
+		visit root_path
+		
+		click_link "About"
+		page.should have_selector 'title', text: ('Ruby on Rails Tutorial Sample App')
+		
+		click_link "Help"
+		page.should have_selector 'title', text: full_title('HeLPP')
+	end
+
 	subject { page }
 	describe "Home page" do
 
