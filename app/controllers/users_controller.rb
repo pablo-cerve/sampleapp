@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   	
   	# si el usuario es creado y guardado correctamente
   	if @user.save
+      sign_in @user
       flash[:success]="Bienvenido a la aplicacion!"
   		redirect_to @user
   		

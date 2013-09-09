@@ -1,17 +1,14 @@
 <% provide(:title, 'Sign up') %>
 <h1>Sign up</h1>
 
-<%= form_for(@user) do |f| %>
-
-	<%= render 'shared/error_messages' %>
-
-<% end %>
 
 <div class="row">
 	<div class="span6 offset3">
 		<%= form_for(@user) do |f| %>
 
-			<%= f.label :name %>
+			<%= render 'shared/error_messages' %>
+
+			<%= f.label :name, "Nombre" %>
 			<%= f.text_field :name %>
 
 			<%= f.label :email %>
@@ -20,7 +17,7 @@
 			<%= f.label :password %>
 			<%= f.password_field :password %>
 
-			<%= f.label :password_confirmation %>
+			<%= f.label :password_confirmation, "Confirmar" %>
 			<%= f.password_field :password_confirmation %>
 		
 			<%= f.submit "Crear usuario" %>
