@@ -1,0 +1,6 @@
+es:
+  errors:
+    format: "%{message}"
+    attributes:
+      email:
+        blank: "El email no puede estar en blanco"

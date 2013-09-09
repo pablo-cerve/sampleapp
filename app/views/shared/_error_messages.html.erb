@@ -1,0 +1,13 @@
+<% if @user.errors.any? %>
+	<div id="error_explanation">
+		<div class="alert alert-error">
+			El formulario contiene <%= @user.errors.count %> <%= "errores:" if @user.errors.count>1 %><%= "error:" if @user.errors.count==1 %>
+		</div>
+  
+	  <ul>
+	  <% @user.errors.full_messages.each do |msg| %>
+	  	<li><%= msg %></li>
+	  <% end %>
+	  </ul>
+	</div>
+<% end %>

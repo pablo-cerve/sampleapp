@@ -1,0 +1,11 @@
+<% provide(:title, @user.name) %>
+<h1>
+	<%= gravatar_for @user %>
+	<%= @user.name if @user.name==(gravatar_for @user)%>
+</h1>
+
+
+<li><%= "Nombre: " + @user.name %></li>
+<li><%= "Email: " + @user.email %></li>
+<li><%= "Id: " + @user.id.to_s %></li>
+
