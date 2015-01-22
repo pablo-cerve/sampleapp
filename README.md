@@ -163,7 +163,6 @@ HOST: http://www.trickgenius.com/
             ]
         }
 
-
 ## Move [/api/v1/moves/{id}]
 + Parameters
     + id (required, number, `65`) ... Numeric `id` of the Move to perform action with. Has example value.
@@ -172,60 +171,60 @@ HOST: http://www.trickgenius.com/
 + Response 200 (application/json)
 
         {
-        "move": {
-        "updated_at": "2014-09-04T19:56:18.497Z",
-        "id": 65,
-        "name": "Reverse Duck Jibe",
-        "difficulty": 4,
-        "sport_id": 1,
-        "description": "Instead of ducking the sail to the inside like in the normal Duck Jibe, you rotate it to the outside. They are similar in their actions, but the Reverse Duck Jibe is just performed from the switch position.",
-        "wind_conditions": "15-25",
-        "water_conditions": "flat",
-        "image_url": "http://localhost:3000/system/moves/images/000/000/065/original/Reverse-Duckjibe-Andy.jpg?1409860577",
-        "public": true,
-        "demo": false,
-        "permission_type": 1,
-        "pre_moves": [
-        41,
-        34
-        ],
-        "post_moves": [
-        143,
-        159
-        ],
-        "variation_moves": [],
-        "tips": [],
-        "pro_tips": [],
-        "galleries": [],
-        "videos": [
-        {
-        "updated_at": "2015-01-16T13:31:14.907Z",
-        "id": 26,
-        "filmer": null,
-        "rider": null,
-        "location": null,
-        "subtitle_file_file_name": null,
-        "subtitle_file_content_type": null,
-        "subtitle_file_file_size": null,
-        "subtitle_file_updated_at": null,
-        "subtitle_breaks": null,
-        "vimeo_video_id": 102984842,
-        "vimeo_video_url": "https://player.vimeo.com/external/102984842.hd.mp4?s=ecef936c348f65a016802c34f5398943&oauth2_token_id=44504391",
-        "vimeo_thumbnail_url": null,
-        "video_title": "Reverse Duck Jibe - Full feature video",
-        "video_type": "video/mp4",
-        "duration": 151,
-        "vimeo_video_url_sd": "https://player.vimeo.com/external/102984842.sd.mp4?s=1747467c7546be641153cfd212ffd9d8&oauth2_token_id=44504391",
-        "video_type_sd": "video/mp4"
-        }
-        ]
-        }
+            "move": {
+                "updated_at": "2014-09-04T19:56:18.497Z",
+                "id": 65,
+                "name": "Reverse Duck Jibe",
+                "difficulty": 4,
+                "sport_id": 1,
+                "description": "Instead of ducking the sail to the inside like in the normal Duck Jibe, you rotate it to the outside. They are similar in their actions, but the Reverse Duck Jibe is just performed from the switch position.",
+                "wind_conditions": "15-25",
+                "water_conditions": "flat",
+                "image_url": "http://localhost:3000/system/moves/images/000/000/065/original/Reverse-Duckjibe-Andy.jpg?1409860577",
+                "public": true,
+                "demo": false,
+                "permission_type": 1,
+                "pre_moves": [
+                    41,
+                    34
+                ],
+                "post_moves": [
+                    143,
+                    159
+                ],
+                "variation_moves": [],
+                "tips": [],
+                "pro_tips": [],
+                "galleries": [],
+                "videos": [
+                    {
+                        "updated_at": "2015-01-16T13:31:14.907Z",
+                        "id": 26,
+                        "filmer": null,
+                        "rider": null,
+                        "location": null,
+                        "subtitle_file_file_name": null,
+                        "subtitle_file_content_type": null,
+                        "subtitle_file_file_size": null,
+                        "subtitle_file_updated_at": null,
+                        "subtitle_breaks": null,
+                        "vimeo_video_id": 102984842,
+                        "vimeo_video_url": "https://player.vimeo.com/external/102984842.hd.mp4?s=ecef936c348f65a016802c34f5398943&oauth2_token_id=44504391",
+                        "vimeo_thumbnail_url": null,
+                        "video_title": "Reverse Duck Jibe - Full feature video",
+                        "video_type": "video/mp4",
+                        "duration": 151,
+                        "vimeo_video_url_sd": "https://player.vimeo.com/external/102984842.sd.mp4?s=1747467c7546be641153cfd212ffd9d8&oauth2_token_id=44504391",
+                        "video_type_sd": "video/mp4"
+                    }
+                ]
+            }
         }
 
 ## Move [/api/v1/moves/{id}/check]
 + Parameters
-    + id (required, number, `65`) ... Numeric `id` of the Move to perform action with. Has example value.
-    
+    + id (required, number, `1`) ... Numeric `id` of the Move to perform action with. Has example value.
+
 ### Check a move [POST]
 + Response 200
 + Response 400 (application/json) 
@@ -236,40 +235,190 @@ HOST: http://www.trickgenius.com/
         
         { "error": { "message": "Move not allowed for user" } }
 
-
-
 ### Uncheck a move [DELETE]
-+ Response 200 (application/json)
++ Response 200
++ Response 400 (application/json) 
+
+        { "error": { "message": "Error occurred while unchecking move" } }
+        
+        { "error": { "message": "Unable to uncheck move" } }
+        
+        { "error": { "message": "Move not allowed for user" } }
 
 ## Move [/api/v1/moves/{id}/wish]
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Move to perform action with. Has example value.
+
 ### Wish a move [POST]
-+ Response 200 (application/json)
++ Response 200
++ Response 400 (application/json)
+
+        { "error": { "message": "Error occurred while wishing move" } }
+        
+        { "error": { "message": "Move already wished" } }
+        
+        { "error": { "message": "User cannot wish checked move" } }
+        
+        { "error": { "message": "Move not allowed for user" } }
 
 ### Unwish a move [DELETE]
-+ Response 200 (application/json)
++ Response 200
++ Response 400 (application/json)
+
+        { "error": { "message": "Unable to unwish move" } }
+        
+        { "error": { "message": "Move not allowed for user" } }
 
 ## Pre-Moves Collection [/api/v1/moves/{id}/pre_moves]
++ Parameters
+    + id (required, number, `65`) ... Numeric `id` of the Move to perform action with. Has example value.
+
 ### List every pre-move of a move [GET]
 + Response 200 (application/json)
 
+        {
+            "pre_moves": [
+                {
+                    "id": 41,
+                    "name": "sailing switch stance preexercise (non planing)",
+                    "difficulty": 2,
+                    "image_url": null,
+                    "genius": true
+                },
+                {
+                    "id": 34,
+                    "name": "Duck Jibe reverse no planing",
+                    "difficulty": 3,
+                    "image_url": null,
+                    "genius": false
+                }
+            ]
+        }
+
 ## Post-Moves Collection [/api/v1/moves/{id}/post_moves]
++ Parameters
+    + id (required, number, `65`) ... Numeric `id` of the Move to perform action with. Has example value.
+
 ### List every post-move of a move [GET]
 + Response 200 (application/json)
 
+        {
+            "post_moves": [
+                {
+                    "id": 143,
+                    "name": "Funnell",
+                    "difficulty": 7,
+                    "image_url": null,
+                    "genius": false
+                },
+                {
+                    "id": 159,
+                    "name": "Kono",
+                    "difficulty": 7,
+                    "image_url": null,
+                    "genius": false
+                }
+            ]
+        }
+        
 ## Variation-Moves Collection [/api/v1/moves/{id}/variation_moves]
++ Parameters
+    + id (required, number, `65`) ... Numeric `id` of the Move to perform action with. Has example value.
+
 ### List every variation-move of a move [GET]
 + Response 200 (application/json)
+        
+        {
+            "variation_moves": [
+                {
+                   "id": 56,
+                    "name": "Speed Jibe / Strap to Strap Jibe",
+                    "difficulty": 3,
+                    "image_url": null,
+                    "genius": false
+                },
+                {
+                    "id": 55,
+                    "name": "Power Jibe / Step Jibe / Carve Jibe",
+                    "difficulty": 3,
+                    "image_url": null,
+                    "genius": false
+                }
+            ]
+        }
 
 ## Notes Collection [/api/v1/moves/{id}/notes]
++ Parameters
+    + id (required, number, `65`) ... Numeric `id` of the Move to perform action with. Has example value.
+
 ### List every note in a move [GET]
 + Response 200 (application/json)
+        
+        {
+            "personal_notes": [
+                {
+                    "id": 13,
+                    "note": "This is also a personal note."
+                },
+                {
+                    "id": 12,
+                    "note": "This is a personal note."
+                },
+            ]
+        }
 
 ### Create a note in a move [POST]
-+ Response 200 (application/json)
++ Request (application/json)
 
-## Note [/api/v1/moves/{id}/notes/{note_id}]
-### Remove a note from a move [DELETE]
+        { "personal_note": { "note": "This is my newest personal note." } }
+        
 + Response 200 (application/json)
+        
+        {
+            "personal_notes": [
+                {
+                    "id": 28,
+                    "note": "This is my newest personal note."
+                },
+                {
+                    "id": 13,
+                    "note": "This is also a personal note."
+                },
+                {
+                    "id": 12,
+                    "note": "This is a personal note."
+                },
+            ]
+        }
+
++ Response 400 (application/json)
+
+        { "error": { "message": "Error occurred while creating personal note" } }
+        
+## Note [/api/v1/moves/{id}/notes/{note_id}]
++ Parameters
+    + id (required, number, `65`) ... Numeric `id` of the Move to perform action with. Has example value.
+    + note_id (required, number, `13`) ... Numeric `note_id` of the Note to perform action with. Has example value.
+
+### Remove a note from a move [DELETE]  
++ Response 200 (application/json)
+        
+        {
+            "personal_notes": [
+                {
+                    "id": 28,
+                    "note": "This is my newest personal note."
+                },
+                {
+                    "id": 12,
+                    "note": "This is a personal note."
+                },
+            ]
+        }
+
++ Response 400 (application/json)
+
+        { "error": { "message": "Error occurred while deleting personal note" } }
 
 ## Comments Collection [/api/v1/moves/{id}/comments]
 ### List every comment in a move [GET]
@@ -336,4 +485,6 @@ HOST: http://www.trickgenius.com/
 
 ### Destroy session (user logout) [DELETE]
 + Response 200 (application/json)
++ 
+
 + 
