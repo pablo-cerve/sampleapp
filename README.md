@@ -638,11 +638,12 @@ HOST: http://www.trickgenius.com/
         { "error": { "message": [ "ActiveRecord error message 1", "ActiveRecord error message 2" ] } }        
         
 ## Session [/api/v1/sign_in]
-### Create session (user login) [POST]
+### Create session [POST]
 + Request
+    
     + Header
-
-        HTTP_AUTHORIZATION: 'Base ' + Base64.encode64(email + ':' + password)
+            
+            HTTP_AUTHORIZATION: 'Base ' + Base64.encode64(email + ':' + password)
 
 + Response 200 (application/json)
 
@@ -696,7 +697,7 @@ HOST: http://www.trickgenius.com/
         { "error": { "message": "Invalid email/password" } }
 
 ## Session [/api/v1/sign_out]
-### Destroy session (user logout) [DELETE]
+### Destroy session [DELETE]
 + Response 200
 + Response 400 (application/json)
 
@@ -918,3 +919,4 @@ HOST: http://www.trickgenius.com/
 + Response 400 (application/json)
 
         { "error": { "message": "Error occurred while creating session note" } }
+
