@@ -24,6 +24,7 @@ HOST: http://www.trickgenius.com/
                     "public": true,
                     "demo": false,
                     "permission_type": 1,
+                    "genius": true,
                     "pre_moves": [
                         56,
                         55
@@ -86,6 +87,7 @@ HOST: http://www.trickgenius.com/
                     "public": true,
                     "demo": false,
                     "permission_type": 1,
+                    "genius": false,
                     "pre_moves": [
                         115,
                         116
@@ -184,6 +186,7 @@ HOST: http://www.trickgenius.com/
                 "public": true,
                 "demo": false,
                 "permission_type": 1,
+                "genius": true,
                 "pre_moves": [
                     41,
                     34
@@ -421,70 +424,497 @@ HOST: http://www.trickgenius.com/
         { "error": { "message": "Error occurred while deleting personal note" } }
 
 ## Comments Collection [/api/v1/moves/{id}/comments]
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Move to perform action with. Has example value.
+
 ### List every comment in a move [GET]
 + Response 200 (application/json)
 
+        {
+            "comments": [
+                {
+                    "id": 60,
+                    "body": "erewrwer",
+                    "time": "3 days",
+                    "user": {
+                        "id": 1,
+                        "name": "Test",
+                        "profile_picture_url": "http://localhost:3000/system/users/profile_pictures/000/000/001/original/02_morgan_freeman_01.jpg?1417616178"
+                    },
+                    "replies": []
+                },
+                {
+                    "id": 59,
+                    "body": "gfgfdgdg",
+                    "time": "4 days",
+                    "user": {
+                        "id": 1,
+                        "name": "Test",
+                        "profile_picture_url": "http://localhost:3000/system/users/profile_pictures/000/000/001/original/02_morgan_freeman_01.jpg?1417616178"
+                    },
+                    "replies": [
+                        {
+                            "id": 61,
+                            "body": "sdsdsd",
+                            "time": "3 days",
+                            "user": {
+                                "id": 1,
+                                "name": "Test",
+                                "profile_picture_url": "http://localhost:3000/system/users/profile_pictures/000/000/001/original/02_morgan_freeman_01.jpg?1417616178"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+
 ### Create a comment in a move [POST]
++ Request (application/json)
+
+        { "comment": { "body": "NEW MOVE COMMENT.", "move_id": 1, "comment_id": null } }
+        
 + Response 200 (application/json)
 
+        {
+            "comments": [
+                {
+                    "id": 75,
+                    "body": "NEW MOVE COMMENT.",
+                    "time": "less than a minute",
+                    "user": {
+                        "id": 1,
+                        "name": "Test",
+                        "profile_picture_url": "http://localhost:3000/system/users/profile_pictures/000/000/001/original/02_morgan_freeman_01.jpg?1417616178"
+                    },
+                    "replies": []
+                }
+                {
+                    "id": 60,
+                    "body": "erewrwer",
+                    "time": "3 days",
+                    "user": {
+                        "id": 1,
+                        "name": "Test",
+                        "profile_picture_url": "http://localhost:3000/system/users/profile_pictures/000/000/001/original/02_morgan_freeman_01.jpg?1417616178"
+                    },
+                    "replies": []
+                },
+                {
+                    "id": 59,
+                    "body": "gfgfdgdg",
+                    "time": "4 days",
+                    "user": {
+                        "id": 1,
+                        "name": "Test",
+                        "profile_picture_url": "http://localhost:3000/system/users/profile_pictures/000/000/001/original/02_morgan_freeman_01.jpg?1417616178"
+                    },
+                    "replies": [
+                        {
+                            "id": 61,
+                            "body": "sdsdsd",
+                            "time": "3 days",
+                            "user": {
+                                "id": 1,
+                                "name": "Test",
+                                "profile_picture_url": "http://localhost:3000/system/users/profile_pictures/000/000/001/original/02_morgan_freeman_01.jpg?1417616178"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+        
++ Response 400 (application/json)
 
-
-# Group Others
-## Genius Moves [/api/v1/genius]
-### List every genius move of currently logged user [GET]
-+ Response 200 (application/json)
-
-## Checked Moves [/api/v1/checks]
-### List every move checked by the currently logged user [GET]
-+ Response 200 (application/json)
-
-## Wished Moves [/api/v1/wishes]
-### List every move wished by the currently logged user [GET]
-+ Response 200 (application/json)
-
-## Categories Collection [/api/v1/categories]
-### List all categories [GET]
-+ Response 200 (application/json)
-
-## Move-Categories Collection [/api/v1/move_categories]
-### List all move-categories [GET]
-+ Response 200 (application/json)
-
-## News Collection [/api/v1/news]
-### List all news [GET]
-+ Response 200 (application/json)
-
-## Pros Collection [/api/v1/pros]
-### List all pros [GET]
-+ Response 200 (application/json)
-
-## Session Notes Collection [/api/v1/session_notes]
-### List every session note of the currently logged user [GET]
-+ Response 200 (application/json)
-
-### Create a session note [POST]
-+ Response 200 (application/json)
-
-
+        { "error": { "message": "Error occurred while creating comment" } }
 
 # Group User
 ## User [/api/v1/users]
 ### Retrieve currently logged user [GET]
 + Response 200 (application/json)
+     
+        {
+            "user": {
+                "authentication_token": "x7iL762u9rapWyMdFix2",
+                "name": "George",
+                "email": "george@gmail.com",
+                "sign_in_count": 91,
+                "current_sign_in_at": "2015-01-23T13:05:58.601Z",
+                "current_sign_in_ip": "127.0.0.1",
+                "unconfirmed_email": null,
+                "admin": true,
+                "provider": null,
+                "uid": null,
+                "best_move_id": 8,
+                "last_move_id": 84,
+                "current_training_move_id": 13,
+                "facebook_picture": null,
+                "profile_picture_url": "http://localhost:3000/system/users/profile_pictures/000/000/001/original/02_morgan_freeman_01.jpg?1417616178",
+                "age": null,
+                "address_1": "",
+                "address_2": "",
+                "zip_code": "",
+                "country": "",
+                "phone": "",
+                "beta": true,
+                "last_name": "User",
+                "city": "",
+                "language": {
+                    "id": 3,
+                    "name": "Spanish",
+                    "created_at": "2014-12-19T18:11:28.866Z",
+                    "updated_at": "2014-12-19T18:11:28.866Z",
+                    "default": false
+                },
+                "level_id": 7,
+                "permission_type": 1,
+                "language_id": 3
+            }
+        }
 
 ### Edit currently logged user [POST]
++ Request (application/json)
+
+        { "user": { "name": "Leonard", "age": 50 } }
+
 + Response 200 (application/json)
+
+        {
+            "user": {
+                "authentication_token": "x7iL762u9rapWyMdFix2",
+                "name": "Leonard",
+                "email": "george@gmail.com",
+                "sign_in_count": 91,
+                "current_sign_in_at": "2015-01-23T13:05:58.601Z",
+                "current_sign_in_ip": "127.0.0.1",
+                "unconfirmed_email": null,
+                "admin": true,
+                "provider": null,
+                "uid": null,
+                "best_move_id": 8,
+                "last_move_id": 84,
+                "current_training_move_id": 13,
+                "facebook_picture": null,
+                "profile_picture_url": "http://localhost:3000/system/users/profile_pictures/000/000/001/original/02_morgan_freeman_01.jpg?1417616178",
+                "age": 50,
+                "address_1": "",
+                "address_2": "",
+                "zip_code": "",
+                "country": "",
+                "phone": "",
+                "beta": true,
+                "last_name": "User",
+                "city": "",
+                "language": {
+                    "id": 3,
+                    "name": "Spanish",
+                    "created_at": "2014-12-19T18:11:28.866Z",
+                    "updated_at": "2014-12-19T18:11:28.866Z",
+                    "default": false
+                },
+                "level_id": 7,
+                "permission_type": 1,
+                "language_id": 3
+            }
+        }
+        
++ Response 422 (application/json)
+
+        { "error": { "message": [ "ActiveRecord error message 1", "ActiveRecord error message 2" ] } }
 
 ## User [/api/v1/users/change_password]
 ### Change password of the currently logged [POST]
-+ Response 200 (application/json)
++ Request (application/json)
 
-## Session [/api/v1/sessions]
+        { "user": { "password_old": "ThisIsTheCurrentPassword", "password": "MyNewPassword", "password_confirmation": "MyNewPassword" } }
+        
++ Response 200
++ Response 400 (application/json)
+
+        { "error": { "message": "Invalid password" } }
+        
++ Response 422 (application/json)
+
+        { "error": { "message": [ "ActiveRecord error message 1", "ActiveRecord error message 2" ] } }        
+        
+## Session [/api/v1/sign_in]
 ### Create session (user login) [POST]
++ Request
+    + Header
+
+        HTTP_AUTHORIZATION: 'Base ' + Base64.encode64(email + ':' + password)
+
 + Response 200 (application/json)
 
+        {
+            "user": {
+                "authentication_token": "x7iL762u9rapWyMdFix2",
+                "name": "Leonard",
+                "email": "george@gmail.com",
+                "sign_in_count": 91,
+                "current_sign_in_at": "2015-01-23T13:05:58.601Z",
+                "current_sign_in_ip": "127.0.0.1",
+                "unconfirmed_email": null,
+                "admin": true,
+                "provider": null,
+                "uid": null,
+                "best_move_id": 8,
+                "last_move_id": 84,
+                "current_training_move_id": 13,
+                "facebook_picture": null,
+                "profile_picture_url": "http://localhost:3000/system/users/profile_pictures/000/000/001/original/02_morgan_freeman_01.jpg?1417616178",
+                "age": 50,
+                "address_1": "",
+                "address_2": "",
+                "zip_code": "",
+                "country": "",
+                "phone": "",
+                "beta": true,
+                "last_name": "User",
+                "city": "",
+                "language": {
+                    "id": 3,
+                    "name": "Spanish",
+                    "created_at": "2014-12-19T18:11:28.866Z",
+                    "updated_at": "2014-12-19T18:11:28.866Z",
+                    "default": false
+                },
+                "level_id": 7,
+                "permission_type": 1,
+                "language_id": 3
+            }
+        }
+
++ Response 400 (application/json)
+
+        { "error": { "message": "HTTP_AUTHORIZATION not provided" } }
+        
++ Response 401 (application/json)
+
+        { "error": { "message": "Unconfirmed email" } }
+        
+        { "error": { "message": "Invalid email/password" } }
+
+## Session [/api/v1/sign_out]
 ### Destroy session (user logout) [DELETE]
-+ Response 200 (application/json)
-+ 
++ Response 200
++ Response 400 (application/json)
 
-+ 
+        { "error": { "message": "Error message" } }
+
+# Group Others
+## Genius Moves [/api/v1/genius]
+### List every genius move of currently logged user [GET]
++ Response 200 (application/json)
+        
+        {
+            "genius_moves": [
+                {
+                    "id": 79,
+                    "name": "Conca Tack",
+                    "difficulty": 6,
+                    "image_url": "http://localhost:3000/system/moves/images/000/000/079/original/Conca-Tack-Rossi.jpg?1409861495"
+                },
+                {
+                    "id": 77,
+                    "name": "Stall Tack",
+                    "difficulty": 4,
+                    "image_url": "http://localhost:3000/system/moves/images/000/000/077/original/Stall-Tack-Rossi.jpg?1409861516"
+                }
+            ]
+        }
+
+## Checked Moves [/api/v1/checks]
+### List every move checked by the currently logged user [GET]
++ Response 200 (application/json)
+
+        {
+            "checked_moves": [
+                {
+                    "id": 123,
+                    "name": "Airflaka"
+                    "difficulty": 4,
+                    "image_url": "http://localhost:3000/system/moves/images/000/000/077/original/Stall-Tack-Rossi.jpg?1409861516"
+                },
+                {
+                    "id": 72,
+                    "name": "Donkey Jibe"
+                    "difficulty": 6,
+                    "image_url": "http://localhost:3000/system/moves/images/000/000/079/original/Conca-Tack-Rossi.jpg?1409861495"
+                }
+            ]
+        }
+
+## Wished Moves [/api/v1/wishes]
+### List every move wished by the currently logged user [GET]
++ Response 200 (application/json)
+
+        {
+            "wished_moves": [
+                {
+                    "id": 79,
+                    "name": "Conca Tack"
+                    "difficulty": 6,
+                    "image_url": "http://localhost:3000/system/moves/images/000/000/079/original/Conca-Tack-Rossi.jpg?1409861495"
+                },
+                {
+                    "id": 65,
+                    "name": "Reverse Duck Jibe"
+                    "difficulty": 4,
+                    "image_url": "http://localhost:3000/system/moves/images/000/000/077/original/Stall-Tack-Rossi.jpg?1409861516"
+                }
+            ]
+        }
+        
+## Categories Collection [/api/v1/categories]
+### List all categories [GET]
++ Response 200 (application/json)
+
+        {
+            "categories": [
+                {
+                    "id": 2,
+                    "name": "Longboard basic course",
+                    "parent_id": 0,
+                    "path_json": "[{\"id\":\"0\",\"name\":\"Moves\"}]",
+                    "depth": 1,
+                    "image_url": "http://www.trickgenius.com/system/categories/images/000/000/002/thumb/longboard-andy.jpg?1421193729",
+                    "position": 1
+                },
+                {
+                    "id": 5,
+                    "name": "BASICS",
+                    "parent_id": 0,
+                    "path_json": "[{\"id\":\"0\",\"name\":\"Moves\"}]",
+                    "depth": 1,
+                    "image_url": "http://www.trickgenius.com/system/categories/images/000/000/005/thumb/carrying-equipment-marion.jpg?1421193729",
+                    "position": 2
+                }
+            ]
+        }
+        
+## Move-Categories Collection [/api/v1/move_categories]
+### List all move-categories [GET]
++ Response 200 (application/json)
+
+        {
+            "move_categories": [
+                {
+                    "move_id": 1,
+                    "category_id": 3,
+                    "added_by_user": true
+                },
+                {
+                    "move_id": 207,
+                    "category_id": 2,
+                    "added_by_user": true
+                }
+            ]
+        }
+        
+## News Collection [/api/v1/news]
+### List all news [GET]
++ Response 200 (application/json)
+
+        {
+            "news": [
+                {
+                    "date": "Today",
+                    "date_news": [
+                        {
+                            "id": 4,
+                            "news_type": "video",
+                            "text": "Second latest",
+                            "move_id": 3,
+                            "default_image": "http://localhost:3000/system/moves/images/000/000/079/original/Conca-Tack-Rossi.jpg?1409861495"
+                        },
+                        {
+                            "id": 3,
+                            "news_type": "details",
+                            "text": "Last minute",
+                            "move_id": 2,
+                            "default_image": "http://localhost:3000/system/moves/images/000/000/077/original/Stall-Tack-Rossi.jpg?1409861516"
+                        }
+                    ]
+                },
+                {
+                    "date": "13 Oct",
+                    "date_news": [
+                        {
+                            "id": 2,
+                            "news_type": "video",
+                            "text": "Important news",
+                            "move_id": 55,
+                            "default_image": "http://localhost:3000/system/moves/images/000/000/079/original/Conca-Tack-Rossi.jpg?1409861495"
+                        },
+                        {
+                            "id": 1,
+                            "news_type": "details",
+                            "text": "Last minute update",
+                            "move_id": 65,
+                            "default_image": "http://localhost:3000/system/moves/images/000/000/077/original/Stall-Tack-Rossi.jpg?1409861516"
+                        }
+                    ]
+                }
+            ]
+        }
+        
+## Pros Collection [/api/v1/pros]
+### List all pros [GET]
++ Response 200 (application/json)
+
+        {
+            "pros": [
+                {
+                    "updated_at": "2014-11-28T17:00:38.186Z",
+                    "id": 1,
+                    "name": "Steve Allen",
+                    "sail": "AUS 13",
+                    "avatar_url": ""http://localhost:3000/system/pros/avatars/000/000/001/original/steveallen.png?1417194037"
+                },
+                {
+                    "updated_at": "2014-12-28T17:00:40.186Z",
+                    "id": 2,
+                    "name": "George Mora",
+                    "sail": "GER 13",
+                    "avatar_url": ""http://localhost:3000/system/pros/avatars/000/000/001/original/georgemora.png?1417194037"
+                }
+            ]
+        }
+
+## Session Notes Collection [/api/v1/session_notes]
+### List every session note of the currently logged user [GET]
++ Response 200 (application/json)
+
+        {
+            "session_notes": [
+                {
+                    "id": 1,
+                    "move_id": 27,
+                    "notes": "My new note",
+                    "nailed": 8,
+                    "attempted": 10,
+                    "fun_level": 4,
+                    "move_name": "Backsailing ashore"
+                },
+                {
+                    "id": 2,
+                    "move_id": 159,
+                    "notes": "not too bad - 4.8 gusty in malcesine",
+                    "nailed": 1,
+                    "attempted": 5,
+                    "fun_level": 4,
+                    "move_name": "Kono"
+                }
+            ]
+        }
+        
+### Create a session note [POST]
++ Request (application/json)
+        
+        { "session_note": { "notes": "Excellent day at the beach!!", "nailed": 9, "attempted": 10, "fun_level": 4, "move_id": 1 } }
+        
++ Response 200
++ Response 400 (application/json)
+
+        { "error": { "message": "Error occurred while creating session note" } }
